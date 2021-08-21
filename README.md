@@ -1,2 +1,3 @@
 # bvalid
-In browser BTC address validator
+
+In browser only BTC address validator

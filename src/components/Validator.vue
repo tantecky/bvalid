@@ -9,6 +9,7 @@
     <input
       type="text"
       autocomplete="off"
+      spellcheck="false"
       placeholder="Paste Here"
       v-model="inputAddr"
       @input="check"
@@ -23,12 +24,28 @@
     >
       {{ this.msg }}
     </div>
-    <div class="footer">Version</div>
+    <div class="footer">
+      <a href="https://github.com/tantecky/bvalid" target="_blank">github</a>
+    </div>
   </div>
 </template>
 
 <script>
 import { getAddressInfo } from 'bitcoin-address-validation'
+
+function identifyFormat(type) {
+  switch (type) {
+    case 'p2pkh':
+      return 'P2PKH'
+    case 'p2sh':
+      return 'P2SH'
+    case 'p2wpkh':
+    case 'p2wsh':
+      return 'Bech32'
+    default:
+      return 'unknown'
+  }
+}
 
 export default {
   name: 'Validator',
@@ -51,7 +68,6 @@ export default {
   methods: {
     check() {
       this.inputAddr = this.inputAddr.replace(/ /g, '')
-      console.log(this.inputAddr)
 
       if (!this.inputAddr) {
         this.dirty = false
@@ -63,7 +79,12 @@ export default {
         console.log(info)
         this.valid = true
 
-        this.msg = 'Valid address'
+        if (info.network != 'mainnet') {
+          this.valid = false
+          this.msg = `Invalid network - ${info.network}`
+        } else {
+          this.msg = `Valid address - ${identifyFormat(info.type)}`
+        }
       } catch {
         this.valid = false
         this.msg = 'Invalid address'
@@ -151,5 +172,6 @@ input:focus {
 .footer {
   position: absolute;
   bottom: 40px;
+  color: #ccc;
 }
 </style>
