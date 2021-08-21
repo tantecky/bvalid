@@ -1,6 +1,7 @@
 // vue.config.js
 module.exports = {
   productionSourceMap: false,
+  publicPath: '/bvalid',
   chainWebpack: (config) => {
     if (config.plugins.has('extract-css')) {
       const extractCSSPlugin = config.plugin('extract-css')
