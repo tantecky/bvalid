@@ -106,19 +106,20 @@ h1 {
   font-size: 36px;
   margin-bottom: 8px;
 }
+
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 input {
   font-size: 32px;
   max-width: 750px;
-  width: 750px;
+  width: 100%;
   text-align: center;
   line-height: 1.5;
   color: #495057;
@@ -173,5 +174,19 @@ input:focus {
   position: absolute;
   bottom: 40px;
   color: #ccc;
+}
+
+@media only screen and (max-width: 576px) {
+  h1 {
+    font-size: 26px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  .result {
+    font-size: 22px;
+  }
 }
 </style>
