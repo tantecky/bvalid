@@ -1,6 +1,6 @@
 # bvalid
 
-In browser only BTC address validator
+In browser only Bitcoin address validator
 
 - No need to query a remote server
 - Validate an address checksum
