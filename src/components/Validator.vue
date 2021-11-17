@@ -40,8 +40,11 @@ function identifyFormat(type) {
     case 'p2sh':
       return 'P2SH'
     case 'p2wpkh':
+      return 'P2WPKH'
     case 'p2wsh':
-      return 'Bech32'
+      return 'P2WSH'
+    case 'p2tr':
+      return 'P2TR'
     default:
       return 'unknown'
   }
