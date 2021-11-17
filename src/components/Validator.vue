@@ -13,7 +13,7 @@
       placeholder="Paste Here"
       v-model="inputAddr"
       @input="check"
-      maxlength="42"
+      maxlength="100"
       :class="[{ valid: isValid }, { invalid: isInvalid }]"
     />
     <div class="note">It never leaves your browser</div>
@@ -88,7 +88,8 @@ export default {
         } else {
           this.msg = `Valid address - ${identifyFormat(info.type)}`
         }
-      } catch {
+      } catch (error) {
+        console.error(error)
         this.valid = false
         this.msg = 'Invalid address'
       } finally {
@@ -121,7 +122,7 @@ h1 {
 
 input {
   font-size: 32px;
-  max-width: 750px;
+  max-width: 1100px;
   width: 100%;
   text-align: center;
   line-height: 1.5;
@@ -179,13 +180,14 @@ input:focus {
   color: #ccc;
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 1110px) {
   h1 {
     font-size: 26px;
   }
 
   input {
     font-size: 16px;
+    max-width: 700px;
   }
 
   .result {
